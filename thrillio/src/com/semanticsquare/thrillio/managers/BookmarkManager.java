@@ -1,5 +1,7 @@
 package com.semanticsquare.thrillio.managers;
-
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import com.semanticsquare.thirllio.dao.BookmarkDao;
 import com.semanticsquare.thrillio.entities.Book;
 import com.semanticsquare.thrillio.entities.Bookmark;
@@ -7,6 +9,8 @@ import com.semanticsquare.thrillio.entities.Movie;
 import com.semanticsquare.thrillio.entities.User;
 import com.semanticsquare.thrillio.entities.UserBookmark;
 import com.semanticsquare.thrillio.entities.WebLink;
+import com.semanticsquare.thrillio.util.HttpConnect;
+import com.semanticsquare.thrillio.util.IOUtil;
 
 public class BookmarkManager {
 	private static BookmarkManager instance = new BookmarkManager();
@@ -64,6 +68,24 @@ public class BookmarkManager {
 		UserBookmark userBookmark = new UserBookmark();
 		userBookmark.setUser(user);
 		userBookmark.setBookmark(bookmark);
+		if (bookmark instanceof WebLink) {
+			try {				
+				String url = ((WebLink)bookmark).getUrl();
+				if (!url.endsWith(".pdf")) {
+					String webpage = HttpConnect.download(((WebLink)bookmark).getUrl());
+					if (webpage != null) {
+						IOUtil.write(webpage, bookmark.getId());
+					}
+				}				
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 
 		dao.saveUserBookmark(userBookmark);
 
