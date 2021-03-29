@@ -1,5 +1,7 @@
 package com.semanticsquare.thrillio;
 
+import java.util.List;
+
 import com.semanticsquare.thrillio.constants.KidFriendlyStatus;
 import com.semanticsquare.thrillio.constants.UserType;
 import com.semanticsquare.thrillio.controllers.BookmarkController;
@@ -9,21 +11,21 @@ import com.semanticsquare.thrillio.partner.Shareable;
 
 public class View {
 
-	public static void browse(User user, Bookmark[][] bookmarks) {
+	public static void browse(User user,List<List<Bookmark>> bookmarks) {
 		System.out.println("\n" + user.getEmail() + " is browsing items ...");
-		int bookmarkCount = 0;
+		//int bookmarkCount = 0;
 
-		for (Bookmark[] bookmarkList : bookmarks) {
+		for (List<Bookmark> bookmarkList : bookmarks) {
 			for (Bookmark bookmark : bookmarkList) {
-				if (bookmarkCount < DataStore.USER_BOOKMARK_LIMIT) {
+				//if (bookmarkCount < DataStore.USER_BOOKMARK_LIMIT) {
 					boolean isBookmarked = getBookmarkDecision(bookmark);
 					if (isBookmarked) {
-						bookmarkCount++;
+						//bookmarkCount++;
 						// controller
 						BookmarkController.getInstance().saveUserBookmark(user, bookmark);
 						System.out.println("New item is bookmarked ----" + bookmark);
 					}
-				}
+				//}
 				// Mark as Kid- Friendly
 				if (user.getUserType().equals(UserType.EDITOR) || user.getUserType().equals(UserType.CHIEF_EDITOR)) {
 					if (bookmark.isKidFriendlyEligeble()

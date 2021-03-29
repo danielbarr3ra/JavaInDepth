@@ -2,6 +2,8 @@ package com.semanticsquare.thrillio.managers;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.util.List;
+
 import com.semanticsquare.thirllio.dao.BookmarkDao;
 import com.semanticsquare.thrillio.entities.Book;
 import com.semanticsquare.thrillio.entities.Bookmark;
@@ -59,7 +61,7 @@ public class BookmarkManager {
 		return weblink;
 	}
 
-	public Bookmark[][] getBookmarks() {
+	public List<List<Bookmark>> getBookmarks() {
 		return dao.getBookmarks();
 	}
 
@@ -92,13 +94,11 @@ public class BookmarkManager {
 	}
 
 	public void setKidFriendlyStatus(String kidFriendlyStatus, Bookmark bookmark) {
-		// TODO Auto-generated method stub
 		bookmark.setKidFriendlyStatus(kidFriendlyStatus);
 		System.out.println("Kid-friendly status: " + kidFriendlyStatus + ", " + bookmark);
 	}
 
 	public void share(User user, Bookmark bookmark) {
-		// TODO Auto-generated method stub
 		bookmark.setSharedBy(user);
 		System.out.println("Data to be shared: ");
 		if (bookmark instanceof Book) {
