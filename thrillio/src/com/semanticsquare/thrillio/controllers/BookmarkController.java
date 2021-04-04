@@ -1,5 +1,6 @@
 package com.semanticsquare.thrillio.controllers;
 
+import com.semanticsquare.thrillio.constants.KidFriendlyStatus;
 import com.semanticsquare.thrillio.entities.Bookmark;
 import com.semanticsquare.thrillio.entities.User;
 import com.semanticsquare.thrillio.managers.BookmarkManager;
@@ -15,7 +16,7 @@ public class BookmarkController {
 		// TODO Auto-generated method stub
 		BookmarkManager.getInstance().saveUserBookmark(user,bookmark);
 	}
-	public void setKidFriendlyStatus(User user, String kidFriendlyStatus, Bookmark bookmark) {
+	public void setKidFriendlyStatus(User user, KidFriendlyStatus kidFriendlyStatus, Bookmark bookmark) {
 		// TODO Auto-generated method stub
 		bookmark.setKidFriendlyMarkedBy(user);
 		BookmarkManager.getInstance().setKidFriendlyStatus(kidFriendlyStatus,bookmark);

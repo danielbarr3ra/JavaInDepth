@@ -1,10 +1,12 @@
 package com.semanticsquare.thrillio.managers;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.util.List;
 
 import com.semanticsquare.thirllio.dao.BookmarkDao;
+import com.semanticsquare.thrillio.constants.BookGenre;
+import com.semanticsquare.thrillio.constants.KidFriendlyStatus;
+import com.semanticsquare.thrillio.constants.MovieGenre;
 import com.semanticsquare.thrillio.entities.Book;
 import com.semanticsquare.thrillio.entities.Bookmark;
 import com.semanticsquare.thrillio.entities.Movie;
@@ -26,7 +28,7 @@ public class BookmarkManager {
 	}
 
 	public Movie createMovie(long id, String title, String profileUrl, int releaseYear, String[] cast,
-			String[] directors, String genre, double imdbRating) {
+			String[] directors, MovieGenre genre, double imdbRating) {
 		Movie movie = new Movie();
 		movie.setId(id);
 		movie.setTitle(title);
@@ -39,7 +41,7 @@ public class BookmarkManager {
 		return movie;
 	}
 
-	public Book createBook(long Id, String title, int publicationYear, String publisher, String[] authors, String genre,
+	public Book createBook(long Id, String title, int publicationYear, String publisher, String[] authors, BookGenre genre,
 			double amazaonRating) {
 		Book book = new Book();
 		book.setId(Id);
@@ -93,7 +95,7 @@ public class BookmarkManager {
 
 	}
 
-	public void setKidFriendlyStatus(String kidFriendlyStatus, Bookmark bookmark) {
+	public void setKidFriendlyStatus(KidFriendlyStatus kidFriendlyStatus, Bookmark bookmark) {
 		bookmark.setKidFriendlyStatus(kidFriendlyStatus);
 		System.out.println("Kid-friendly status: " + kidFriendlyStatus + ", " + bookmark);
 	}
