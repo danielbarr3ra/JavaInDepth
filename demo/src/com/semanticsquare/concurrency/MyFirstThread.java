@@ -15,6 +15,8 @@ public class MyFirstThread {
 			Thread.sleep(3000); //current thread sleep for 3 seconds.
 			
 			TimeUnit.SECONDS.sleep(3);
+			
+			thread.interrupt();
 			//web crawlers use it
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -30,6 +32,15 @@ class Task implements Runnable{
 	@Override
 	public void run() {
 		System.out.println("Inside run...");
+		try {
+			Thread.sleep(3000); //current thread sleep for 3 seconds.
+			
+			TimeUnit.SECONDS.sleep(9);
+			//web crawlers use it
+		} catch (InterruptedException e) {
+			System.out.println("Interrupted");
+			//e.printStackTrace();
+		}
 		go();
 	}
 
