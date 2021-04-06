@@ -18,6 +18,8 @@ public class View {
 		for (List<Bookmark> bookmarkList : bookmarks) {
 			for (Bookmark bookmark : bookmarkList) {
 				//if (bookmarkCount < DataStore.USER_BOOKMARK_LIMIT) {
+				
+				//
 					boolean isBookmarked = getBookmarkDecision(bookmark);
 					if (isBookmarked) {
 						//bookmarkCount++;

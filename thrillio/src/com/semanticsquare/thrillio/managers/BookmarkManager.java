@@ -72,12 +72,16 @@ public class BookmarkManager {
 		UserBookmark userBookmark = new UserBookmark();
 		userBookmark.setUser(user);
 		userBookmark.setBookmark(bookmark);
+		//write background job to save the bookmark
+		/*
 		if (bookmark instanceof WebLink) {
 			try {				
 				String url = ((WebLink)bookmark).getUrl();
 				if (!url.endsWith(".pdf")) {
+					//only the download part will be concurrently
 					String webpage = HttpConnect.download(((WebLink)bookmark).getUrl());
 					if (webpage != null) {
+						//writing to disk will be concurrently
 						IOUtil.write(webpage, bookmark.getId());
 					}
 				}				
@@ -88,7 +92,7 @@ public class BookmarkManager {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}*/
 		
 
 		dao.saveUserBookmark(userBookmark);

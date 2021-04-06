@@ -2,6 +2,7 @@ package com.semanticsquare.thrillio;
 
 import java.util.List;
 
+import com.semanticsquare.thirllio.bgjobs.WebpageDownloaderTask;
 import com.semanticsquare.thrillio.entities.Bookmark;
 import com.semanticsquare.thrillio.entities.User;
 import com.semanticsquare.thrillio.managers.BookmarkManager;
@@ -50,6 +51,13 @@ public class Launch {
 		// TODO Auto-generated method stub
 		loadData();
 		start();
+		runDownLoaderJob();
+	}
+
+	private static void runDownLoaderJob() {
+		// TODO Auto-generated method stub
+		WebpageDownloaderTask task = new WebpageDownloaderTask(true);
+		(new Thread(task)).start();
 	}
 
 
