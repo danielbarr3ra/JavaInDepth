@@ -1,6 +1,4 @@
 package com.semanticsquare.thrillio.managers;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.util.List;
 
 import com.semanticsquare.thirllio.dao.BookmarkDao;
@@ -13,8 +11,6 @@ import com.semanticsquare.thrillio.entities.Movie;
 import com.semanticsquare.thrillio.entities.User;
 import com.semanticsquare.thrillio.entities.UserBookmark;
 import com.semanticsquare.thrillio.entities.WebLink;
-import com.semanticsquare.thrillio.util.HttpConnect;
-import com.semanticsquare.thrillio.util.IOUtil;
 
 public class BookmarkManager {
 	private static BookmarkManager instance = new BookmarkManager();
@@ -72,36 +68,17 @@ public class BookmarkManager {
 		UserBookmark userBookmark = new UserBookmark();
 		userBookmark.setUser(user);
 		userBookmark.setBookmark(bookmark);
-		//write background job to save the bookmark
-		/*
-		if (bookmark instanceof WebLink) {
-			try {				
-				String url = ((WebLink)bookmark).getUrl();
-				if (!url.endsWith(".pdf")) {
-					//only the download part will be concurrently
-					String webpage = HttpConnect.download(((WebLink)bookmark).getUrl());
-					if (webpage != null) {
-						//writing to disk will be concurrently
-						IOUtil.write(webpage, bookmark.getId());
-					}
-				}				
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (URISyntaxException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}*/
+
 		
 
 		dao.saveUserBookmark(userBookmark);
 
 	}
 
-	public void setKidFriendlyStatus(KidFriendlyStatus kidFriendlyStatus, Bookmark bookmark) {
+	public void setKidFriendlyStatus(User user, KidFriendlyStatus kidFriendlyStatus, Bookmark bookmark) {
 		bookmark.setKidFriendlyStatus(kidFriendlyStatus);
-		System.out.println("Kid-friendly status: " + kidFriendlyStatus + ", " + bookmark);
+		bookmark.setKidFriendlyMarkedBy(user);
+		dao.updateKidFriendlyStatus(bookmark);
 	}
 
 	public void share(User user, Bookmark bookmark) {
@@ -113,5 +90,6 @@ public class BookmarkManager {
 			System.out.println(((WebLink)bookmark).getItemData());
 		}
 		
+		dao.sharedByInfo(bookmark);
 	}
 }

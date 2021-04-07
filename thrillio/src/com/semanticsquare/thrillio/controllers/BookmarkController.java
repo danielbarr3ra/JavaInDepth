@@ -18,9 +18,9 @@ public class BookmarkController {
 	}
 	public void setKidFriendlyStatus(User user, KidFriendlyStatus kidFriendlyStatus, Bookmark bookmark) {
 		// TODO Auto-generated method stub
-		bookmark.setKidFriendlyMarkedBy(user);
-		BookmarkManager.getInstance().setKidFriendlyStatus(kidFriendlyStatus,bookmark);
-		System.out.println("Kid-friendly status: "+ kidFriendlyStatus + " Marked by: "+ user.getEmail()+" , "+ bookmark);
+		//bookmark.setKidFriendlyMarkedBy(user);
+		BookmarkManager.getInstance().setKidFriendlyStatus(user,kidFriendlyStatus,bookmark);
+		//System.out.println("Kid-friendly status: "+ kidFriendlyStatus + " Marked by: "+ user.getEmail()+" , "+ bookmark);
 	}
 	public void share(User user, Bookmark bookmark) {
 		BookmarkManager.getInstance().share(user,bookmark);

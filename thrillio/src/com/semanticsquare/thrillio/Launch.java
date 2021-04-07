@@ -51,7 +51,8 @@ public class Launch {
 		// TODO Auto-generated method stub
 		loadData();
 		start();
-		runDownLoaderJob();
+		
+		//runDownLoaderJob();
 	}
 
 	private static void runDownLoaderJob() {

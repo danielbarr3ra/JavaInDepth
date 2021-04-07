@@ -27,8 +27,9 @@ public class View {
 						BookmarkController.getInstance().saveUserBookmark(user, bookmark);
 						System.out.println("New item is bookmarked ----" + bookmark);
 					}
-				//}
+				
 				// Mark as Kid- Friendly
+				
 				if (user.getUserType().equals(UserType.EDITOR) || user.getUserType().equals(UserType.CHIEF_EDITOR)) {
 					if (bookmark.isKidFriendlyEligeble()
 							&& bookmark.getKidFriendlyStatus().equals(KidFriendlyStatus.UNKNOWN)) {
@@ -55,8 +56,9 @@ public class View {
 	}
 
 	private static KidFriendlyStatus getKidFriendlyStatusDecision(Bookmark bookmark) {
-		return Math.random() < 0.4 ? KidFriendlyStatus.APPROVED
-				: (Math.random() >= 0.4 && Math.random() < 0.8) ? KidFriendlyStatus.REJECTED
+		double decision = Math.random();
+		return decision < 0.4 ? KidFriendlyStatus.APPROVED
+				: (decision >= 0.4 && decision < 0.8) ? KidFriendlyStatus.REJECTED
 						: KidFriendlyStatus.UNKNOWN;
 	}
 
