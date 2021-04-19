@@ -1,4 +1,4 @@
-package com.semanticsquare.lambdas;
+package com.semanticsquare.functional;
 
 import java.util.ArrayList;
 import java.util.Arrays;

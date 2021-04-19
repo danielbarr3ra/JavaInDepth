@@ -1,4 +1,4 @@
-package com.semanticsquare.lambdas;
+package com.semanticsquare.functional;
 
 public class Bookmark {
 	private long id;
